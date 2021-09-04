@@ -1,0 +1,156 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            height: 300px; /* Should be removed. Only for demonstration */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>申貸表</h2>
+
+    <div class="row">
+        <div class="column">
+
+            <p>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">姓名</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <br />
+
+                <div class="mb-3">
+                    <label for="IdNumber" class="form-label">身分證字號</label>
+                    <input type="text" class="form-control" id="IdNumber">
+                </div>
+                <br />
+
+
+                <div class="mb-3">
+                    <label for="school" class="form-label">就讀學校</label>
+                    <input type="text" class="form-control" id="school">
+                </div>
+                <br />
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">電子信箱</label>
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                </div>
+                <br />
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">手機號碼</label>
+                    <input type="text" class="form-control" id="phone">
+                </div>
+                <br />
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">請上傳身分證正面</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+                <br />
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">請上傳身分證背面</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+                <br />
+                
+            </p>
+        </div>
+        <div class="column">
+
+            <p>
+
+
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>請選擇申貸理由</option>
+                    <option value="1">學費</option>
+                    <option value="2">生活費</option>
+                    <option value="3">醫療費</option>
+                    <option value="3">其他</option>
+                </select>
+                <br />
+
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">詳述申貸原由(非必填)</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <br />
+
+                <div class="mb-3">
+                    <label for="amount" class="form-label">申貸金額</label>
+                    <input type="text" class="form-control" id="amount" placeholder="1000~100000">
+                </div>
+                <br />
+
+                <div class="mb-3">
+                    <label for="rate" class="form-label">申貸利率</label>
+                    <input type="text" class="form-control" id="rate" placeholder="1~16">
+                </div>
+                <br />
+
+                <div class="mb-3">
+                    <label for="bank" class="form-label">銀行帳號</label>
+                    <input type="text" class="form-control" id="bank" >
+                </div>
+                <br />
+
+                <div class="mb-3">
+                    <label for="score" class="form-label">聯徵分數</label>
+                    <input type="text" class="form-control" id="score">
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="checkbox" name="check" value="sure" id="sure" /><label for="sure">我同意隱私權政策以及會員條款</label><br /><br />
+                </div>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

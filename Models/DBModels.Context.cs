@@ -26,5 +26,7 @@ namespace BFTFtest.Models
         }
     
         public virtual DbSet<Apply> Apply { get; set; }
+        public virtual DbSet<Validation> Validations { get; set; }
+        public virtual DbSet<Transfer> Transfers { get; set; }
     }
 }

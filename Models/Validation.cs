@@ -12,14 +12,12 @@ namespace BFTFtest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Apply
+    public partial class Validation
     {
-        public int EventId { get; set; }
-        public string School { get; set; }
-        public string Reason { get; set; }
-        public Nullable<int> Money { get; set; }
-        public Nullable<double> Rate { get; set; }
-        public Nullable<int> Period { get; set; }
-        public Nullable<int> CreditScore { get; set; }
+        public string IdCardNumber { get; set; }
+        public byte[] IdCardPicture1 { get; set; }
+        public byte[] IdCardPicture2 { get; set; }
+        public byte[] StudentCardPicture1 { get; set; }
+        public byte[] StudentPicture2 { get; set; }
     }
 }

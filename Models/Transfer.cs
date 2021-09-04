@@ -12,12 +12,12 @@ namespace BFTFtest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Apply
+    public partial class Transfer
     {
-        public int EventId { get; set; }
-        public string School { get; set; }
-        public string Reason { get; set; }
-        public Nullable<int> Money { get; set; }
+        public int newEventId { get; set; }
+        public Nullable<int> EventId { get; set; }
+        public Nullable<int> BuyPrice { get; set; }
+        public Nullable<int> SoldPrice { get; set; }
         public Nullable<double> Rate { get; set; }
         public Nullable<int> Period { get; set; }
         public Nullable<int> CreditScore { get; set; }

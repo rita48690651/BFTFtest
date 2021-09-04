@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Apply">
           <Key>
             <PropertyRef Name="EventId" />
@@ -15,12 +15,36 @@
           <Property Name="Money" Type="int" />
           <Property Name="Rate" Type="float" />
           <Property Name="Period" Type="int" />
+          <Property Name="CreditScore" Type="int" />
+        </EntityType>
+        <EntityType Name="Transfer">
+          <Key>
+            <PropertyRef Name="newEventId" />
+          </Key>
+          <Property Name="newEventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventId" Type="int" />
+          <Property Name="BuyPrice" Type="int" />
+          <Property Name="SoldPrice" Type="int" />
+          <Property Name="Rate" Type="float" />
+          <Property Name="Period" Type="int" />
+          <Property Name="CreditScore" Type="int" />
+        </EntityType>
+        <EntityType Name="Validation">
+          <Key>
+            <PropertyRef Name="IdCardNumber" />
+          </Key>
+          <Property Name="IdCardNumber" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="IdCardPicture1" Type="varbinary(max)" />
+          <Property Name="IdCardPicture2" Type="varbinary(max)" />
+          <Property Name="StudentCardPicture1" Type="varbinary(max)" />
+          <Property Name="StudentPicture2" Type="varbinary(max)" />
         </EntityType>
         <EntityContainer Name="testModelStoreContainer">
           <EntitySet Name="Apply" EntityType="Self.Apply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transfer" EntityType="Self.Transfer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Validation" EntityType="Self.Validation" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -34,10 +58,35 @@
           <Property Name="Money" Type="Int32" />
           <Property Name="Rate" Type="Double" />
           <Property Name="Period" Type="Int32" />
+          <Property Name="CreditScore" Type="Int32" />
         </EntityType>
         <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Apply" EntityType="Self.Apply" />
+          <EntitySet Name="Validations" EntityType="testModel.Validation" />
+          <EntitySet Name="Transfers" EntityType="testModel.Transfer" />
         </EntityContainer>
+        <EntityType Name="Validation">
+          <Key>
+            <PropertyRef Name="IdCardNumber" />
+          </Key>
+          <Property Name="IdCardNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdCardPicture1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdCardPicture2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="StudentCardPicture1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="StudentPicture2" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transfer">
+          <Key>
+            <PropertyRef Name="newEventId" />
+          </Key>
+          <Property Name="newEventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int32" />
+          <Property Name="BuyPrice" Type="Int32" />
+          <Property Name="SoldPrice" Type="Int32" />
+          <Property Name="Rate" Type="Double" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="CreditScore" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -47,12 +96,37 @@
           <EntitySetMapping Name="Apply">
             <EntityTypeMapping TypeName="testModel.Apply">
               <MappingFragment StoreEntitySet="Apply">
+                <ScalarProperty Name="CreditScore" ColumnName="CreditScore" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="School" ColumnName="School" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="Money" ColumnName="Money" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Validations">
+            <EntityTypeMapping TypeName="testModel.Validation">
+              <MappingFragment StoreEntitySet="Validation">
+                <ScalarProperty Name="StudentPicture2" ColumnName="StudentPicture2" />
+                <ScalarProperty Name="StudentCardPicture1" ColumnName="StudentCardPicture1" />
+                <ScalarProperty Name="IdCardPicture2" ColumnName="IdCardPicture2" />
+                <ScalarProperty Name="IdCardPicture1" ColumnName="IdCardPicture1" />
+                <ScalarProperty Name="IdCardNumber" ColumnName="IdCardNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transfers">
+            <EntityTypeMapping TypeName="testModel.Transfer">
+              <MappingFragment StoreEntitySet="Transfer">
+                <ScalarProperty Name="CreditScore" ColumnName="CreditScore" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="SoldPrice" ColumnName="SoldPrice" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="newEventId" ColumnName="newEventId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -70,7 +144,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
